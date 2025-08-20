@@ -15,8 +15,8 @@ server.use('/api/product', router);
 server.use('/api/cart', cart_router)
 
 
-// server.listen(PORT, () => {
-//   console.log("Server running on port ", PORT)
-// })
+server.listen(PORT, () => {
+  console.log("Server running on port ", PORT)
+})
 
 export default server;
