@@ -55,7 +55,7 @@ const Product = () => {
     const apiUrl = import.meta.env.VITE_API_BACKEND_PRODUCT;
     try {
       const response = await axios.post(
-        `${apiUrl}/addNewProduct`,
+        `${apiUrl}addNewProduct`,
         formData
       );
       console.log("Added Successfully");

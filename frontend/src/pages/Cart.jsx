@@ -15,7 +15,7 @@ const Cart = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `${apiUrl}/getAllFromCart`
+        `${apiUrl}cart`
       );
       setCartItems(response.data.products);
       setLoading(false);
@@ -31,8 +31,9 @@ const Cart = () => {
   };
 
   const handleDelete = async (id) => {
+    const apiUrl = import.meta.env.VITE_API_BACKEND_CART;
     try {
-      await axios.delete(`http://localhost:3000/api/cart/delete/${id}`);
+      await axios.delete(`${apiUrl}delete/${id}`);
       setCartItems((prev) => prev.filter((item) => item._id !== id));
       setPrice(
         (prev) =>

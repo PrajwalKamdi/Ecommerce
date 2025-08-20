@@ -21,7 +21,7 @@ const ProductCards = () => {
     const apiUrl = import.meta.env.VITE_API_BACKEND;
     try {
       const response = await axios.get(
-        `${apiUrl}/products`
+        `${apiUrl}products`
       );
       setProducts(response.data.products);
     } catch (err) {

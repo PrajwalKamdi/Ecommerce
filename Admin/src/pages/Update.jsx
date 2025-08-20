@@ -27,7 +27,7 @@ const Update = () => {
     console.log(_id);
     try {
       const response = await axios.get(
-        `${apiUrl}/getProduct/${_id}`
+        `${apiUrl}getProduct/${_id}`
       );
       setProduct(response.data.product);
       setFormData(response.data.product);
@@ -52,8 +52,8 @@ const Update = () => {
     data.append("file", file);
     data.append("upload_preset", "Ecom_Project_Images");
     data.append("cloud_name", "dsk4pebpe");
-    const res = await axios.post(
-      "https://api.cloudinary.com/v1_1/dsk4pebpe/image/upload",
+    const apiUrl = import.meta.env.VITE_API_BACKEND_CLOUDINARY;
+    const res = await axios.post(apiUrl,
       data
     );
     const uploadedImageUrl = res.data.secure_url;
@@ -71,7 +71,7 @@ const Update = () => {
     console.log(formData);
     try {
       const response = await axios.patch(
-        `${apiUrl}/updateProduct/${_id}`,
+        `${apiUrl}updateProduct/${_id}`,
         formData
       );
       console.log("Updated Successfully");

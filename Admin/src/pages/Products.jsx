@@ -13,7 +13,7 @@ const Products = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-          `${apiUrl}/products`
+          `${apiUrl}products`
       );
       setProducts(response.data.products || []); // ensure it's always an array
       // console.log(response.data.products);
@@ -31,7 +31,7 @@ const Products = () => {
     try {
       setIsDelete(true);
       await axios.delete(
-        `${apiUrl}/deleteProduct/${id}`
+        `${apiUrl}deleteProduct/${id}`
       );
       console.log("Product deleted successfully");
     } catch (error) {

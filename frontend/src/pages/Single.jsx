@@ -12,7 +12,7 @@ const Single = () => {
     const apiUrl = import.meta.env.VITE_API_BACKEND;
     try {
       const response = await axios.get(
-        `${apiUrl}/getProduct/${_id}`
+        `${apiUrl}getProduct/${_id}`
       );
       setProduct(response.data.product);
     } catch (error) {
@@ -27,7 +27,7 @@ const Single = () => {
   const handleCart = async () => {
     const apiUrl = import.meta.env.VITE_API_BACKEND_CART;
     try {
-      await axios.post(`${apiUrl}/addToCart`, {
+      await axios.post(`${apiUrl}addToCart`, {
         productId: product._id,
         productName: product.name,
         productImage: product.image,
