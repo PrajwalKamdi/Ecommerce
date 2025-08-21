@@ -158,7 +158,7 @@ const Update = () => {
             </label>
             <input
               type="number"
-              name="discountedPrice"
+              name="discountPrice"
               placeholder="₹ Discounted"
               value={formData.discountPrice}
               onChange={handleChnage}
