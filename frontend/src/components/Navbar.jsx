@@ -1,13 +1,7 @@
 import { Cross, Menu, Search } from "lucide-react";
 import { useState } from "react";
 import { menuItems } from "./Menu_items";
-
-// Mock NavLink
-const NavLink = ({ to, children, className, onClick }) => (
-  <a href={to} className={className} onClick={onClick}>
-    {children}
-  </a>
-);
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
