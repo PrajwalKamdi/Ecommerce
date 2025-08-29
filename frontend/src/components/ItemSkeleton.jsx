@@ -2,9 +2,9 @@ import React from "react";
 
 const ItemSkeleton= () => {
   return (
-    <div className="w-full flex gap-20 p-4 animate-pulse min-h-screen px-20 py-10 border border-gray-200 rounded-2xl shadow-lg bg-white">
+    <div className="w-full flex flex-col md:flex-row gap-20 p-4 animate-pulse min-h-screen md:px-20 py-10 border border-gray-200 rounded-2xl shadow-lg bg-white">
       {/* Left Side - Image Skeleton */}
-      <div className="w-1/2 flex h-[450px] rounded-xl bg-gray-100"></div>
+      <div className="md:w-1/2 flex h-[200px] md:h-[450px] rounded-xl bg-gray-100"></div>
 
       {/* Right Side - Info Skeleton */}
       <div className="flex flex-col w-2/3">
