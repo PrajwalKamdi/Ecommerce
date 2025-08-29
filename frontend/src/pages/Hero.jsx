@@ -1,10 +1,6 @@
-import axios from "axios";
-import ProductCards from "./ProductCards";
 import EcommerceHero from "./HeroEcommerce";
+import ProductCards from "./ProductCards";
 const Hero = () => {
-  const handleApi = (req, res) => {
-    const response = axios.get();
-  };
   return (
     <section>
       <EcommerceHero />

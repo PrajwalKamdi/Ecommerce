@@ -1,4 +1,4 @@
-import { Home, ShoppingBag, Users, Settings, BarChart, Plus, PlusCircleIcon, PlusCircle, ShoppingCart, Heart, Package } from "lucide-react";
+import { Package, ShoppingBag, ShoppingCart, Users } from "lucide-react";
 
 export const menuItems = [
  

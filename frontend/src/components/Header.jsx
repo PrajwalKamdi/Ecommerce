@@ -3,7 +3,7 @@ import Navbar from './Navbar.jsx'
 
 const Header = () => {
   return (
-    <div className='px-10 py-5 bg-white/70'>
+    <div className=''>
       <Navbar/>
     </div>
   )

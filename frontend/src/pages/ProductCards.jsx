@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import LoadingSkeleton from "../components/LoadingSkeleton";
 
 const ProductCards = () => {
   const [products, setProducts] = useState([]);
@@ -30,7 +31,11 @@ const ProductCards = () => {
       setLoading(false);
     }
   };
-
+  if(loading){
+    return(
+      <LoadingSkeleton/>
+    )
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
       <div className="max-w-7xl mx-auto">

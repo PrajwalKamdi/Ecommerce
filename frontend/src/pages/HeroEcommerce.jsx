@@ -1,5 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Smartphone, Zap, Shirt, Trophy, ShoppingBag, ArrowRight, Star } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Smartphone,
+  Zap,
+  Shirt,
+  Trophy,
+  ShoppingBag,
+  ArrowRight,
+  Star,
+} from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 const EcommerceHero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -9,32 +20,35 @@ const EcommerceHero = () => {
       id: 1,
       title: "Latest Electronics",
       subtitle: "Tech That Transforms",
-      description: "Discover cutting-edge gadgets and electronics that revolutionize your digital lifestyle",
+      description:
+        "Discover cutting-edge gadgets and electronics that revolutionize your digital lifestyle",
       cta: "Shop Electronics",
       gradient: "from-blue-600 via-purple-600 to-indigo-800",
       icon: <Smartphone className="w-16 h-16 text-white" />,
-      decorativeText: "NEW ARRIVALS"
+      decorativeText: "NEW ARRIVALS",
     },
     {
       id: 2,
       title: "Sports & Fitness",
       subtitle: "Unleash Your Potential",
-      description: "Premium sports gear and equipment to help you achieve your fitness goals",
+      description:
+        "Premium sports gear and equipment to help you achieve your fitness goals",
       cta: "Shop Sports",
       gradient: "from-orange-500 via-red-500 to-pink-600",
       icon: <Trophy className="w-16 h-16 text-white" />,
-      decorativeText: "BEST SELLERS"
+      decorativeText: "BEST SELLERS",
     },
     {
       id: 3,
       title: "Fashion & Clothing",
       subtitle: "Style Redefined",
-      description: "Trendy clothing and accessories that express your unique personality",
+      description:
+        "Trendy clothing and accessories that express your unique personality",
       cta: "Shop Fashion",
       gradient: "from-emerald-500 via-teal-500 to-cyan-600",
       icon: <Shirt className="w-16 h-16 text-white" />,
-      decorativeText: "TRENDING"
-    }
+      decorativeText: "TRENDING",
+    },
   ];
 
   const categoryBanners = [
@@ -44,7 +58,8 @@ const EcommerceHero = () => {
       offer: "Up to 40% OFF",
       bgColor: "bg-gradient-to-br from-blue-500 to-purple-600",
       icon: <Zap className="w-8 h-8 text-white" />,
-      image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400&h=300&fit=crop&crop=entropy&auto=format&q=80"
+      image:
+        "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400&h=300&fit=crop&crop=entropy&auto=format&q=80",
     },
     {
       category: "Sports",
@@ -52,7 +67,8 @@ const EcommerceHero = () => {
       offer: "Best Prices",
       bgColor: "bg-gradient-to-br from-orange-500 to-red-600",
       icon: <Trophy className="w-8 h-8 text-white" />,
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&crop=entropy&auto=format&q=80"
+      image:
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&crop=entropy&auto=format&q=80",
     },
     {
       category: "Clothing",
@@ -60,8 +76,9 @@ const EcommerceHero = () => {
       offer: "New Collection",
       bgColor: "bg-gradient-to-br from-emerald-500 to-teal-600",
       icon: <Shirt className="w-8 h-8 text-white" />,
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop&crop=entropy&auto=format&q=80"
-    }
+      image:
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop&crop=entropy&auto=format&q=80",
+    },
   ];
 
   useEffect(() => {
@@ -76,7 +93,9 @@ const EcommerceHero = () => {
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+    setCurrentSlide(
+      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
+    );
   };
 
   return (
@@ -87,18 +106,26 @@ const EcommerceHero = () => {
           <div
             key={slide.id}
             className={`absolute inset-0 transition-transform duration-700 ease-in-out ${
-              index === currentSlide ? 'translate-x-0' : 
-              index < currentSlide ? '-translate-x-full' : 'translate-x-full'
+              index === currentSlide
+                ? "translate-x-0"
+                : index < currentSlide
+                ? "-translate-x-full"
+                : "translate-x-full"
             }`}
           >
-            <div className={`w-full h-full bg-gradient-to-r ${slide.gradient} relative`}>
+            <div
+              className={`w-full h-full bg-gradient-to-r ${slide.gradient} relative`}
+            >
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `radial-gradient(circle at 25% 25%, white 2px, transparent 2px)`,
-                  backgroundSize: '50px 50px'
-                }}></div>
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `radial-gradient(circle at 25% 25%, white 2px, transparent 2px)`,
+                    backgroundSize: "50px 50px",
+                  }}
+                ></div>
               </div>
 
               {/* Content Container */}
@@ -116,11 +143,11 @@ const EcommerceHero = () => {
                       <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                         {slide.title}
                       </h1>
-                      
+
                       <h2 className="text-2xl lg:text-3xl font-light text-white/90">
                         {slide.subtitle}
                       </h2>
-                      
+
                       <p className="text-lg lg:text-xl text-white/80 max-w-md leading-relaxed">
                         {slide.description}
                       </p>
@@ -130,7 +157,7 @@ const EcommerceHero = () => {
                           <span>{slide.cta}</span>
                           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                         </button>
-                        
+
                         <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105">
                           Learn More
                         </button>
@@ -162,7 +189,7 @@ const EcommerceHero = () => {
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
-        
+
         <button
           onClick={nextSlide}
           className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-all duration-200 z-20"
@@ -177,7 +204,9 @@ const EcommerceHero = () => {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
+                index === currentSlide
+                  ? "bg-white scale-125"
+                  : "bg-white/50 hover:bg-white/75"
               }`}
             />
           ))}
@@ -192,7 +221,8 @@ const EcommerceHero = () => {
               Shop By Category
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Explore our carefully curated collections designed for every lifestyle
+              Explore our carefully curated collections designed for every
+              lifestyle
             </p>
           </div>
 
@@ -208,23 +238,29 @@ const EcommerceHero = () => {
                     alt={banner.category}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className={`absolute inset-0 ${banner.bgColor} bg-opacity-80`}></div>
-                  
+                  <div
+                    className={`absolute inset-0 ${banner.bgColor} bg-opacity-80`}
+                  ></div>
+
                   {/* Content Overlay */}
                   <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white p-6">
                     <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
                       {banner.icon}
                     </div>
-                    
-                    <h3 className="text-2xl font-bold mb-2">{banner.category}</h3>
+
+                    <h3 className="text-2xl font-bold mb-2">
+                      {banner.category}
+                    </h3>
                     <p className="text-lg mb-2 opacity-90">{banner.title}</p>
                     <span className="text-xl font-semibold bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
                       {banner.offer}
                     </span>
-                    
+
                     <button className="group/btn bg-white text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-200 flex items-center space-x-2 transform hover:scale-105">
                       <ShoppingBag className="w-5 h-5" />
-                      <span>Shop Now</span>
+                      <NavLink to="/products">
+                        <span>Shop Now</span>
+                      </NavLink>
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
                     </button>
                   </div>
