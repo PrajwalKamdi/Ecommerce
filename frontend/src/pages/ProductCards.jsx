@@ -33,7 +33,7 @@ const ProductCards = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}
-        <div className="text-center mb-8 md:mb-12">
+        {/* <div className="text-center mb-8 md:mb-12">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2 md:mb-4">
             Our Products
           </h1>
@@ -43,7 +43,7 @@ const ProductCards = () => {
           <div className="mt-2 md:mt-4 text-xs sm:text-sm text-gray-500">
             {products.length} {products.length === 1 ? "product" : "products"} available
           </div>
-        </div>
+        </div> */}
 
         {/* PRODUCTS GRID */}
         {loading ? (

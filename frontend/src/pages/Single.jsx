@@ -7,6 +7,7 @@ import Trust from "../components/Trust";
 import Btn from "./Btn";
 import Trust02 from "../components/Trust02";
 import LoadingSkeleton from "../components/LoadingSkeleton";
+import ItemSkeleton from "../components/ItemSkeleton";
 
 const Single = () => {
   const { _id } = useParams();
@@ -51,7 +52,7 @@ const Single = () => {
     }
   };
   if (loading) {
-    return <LoadingSkeleton />;
+    return <ItemSkeleton/>;
   }
   return (
     <div className="bg-gradient-to-br from-blue-50 via-white to-gray-100 min-h-screen py-6 px-2 md:px-10 lg:px-24">
