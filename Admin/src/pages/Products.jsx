@@ -2,7 +2,7 @@ import axios from "axios";
 import { Delete, Edit, Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import {} from "src/Components/SkeletoLoading.jsx"
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [isDelete, setIsDelete] = useState(false);
