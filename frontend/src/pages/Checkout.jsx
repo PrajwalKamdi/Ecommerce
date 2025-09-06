@@ -5,22 +5,17 @@ import { Mycontext } from "../store/Store.jsx";
 const Checkout = ({}) => {
   const price = localStorage.getItem("totalPrice");
   const apiUrl = import.meta.env.VITE_API_BACKEND;
-  const {setCartItems, setPrice} = useContext(Mycontext);
+  const { setCartItems, setPrice } = useContext(Mycontext);
   const handleSubmit = async () => {
     try {
       const { data: keyData } = await axios.get(`${apiUrl}get-key`);
       const key = keyData.key;
-
-      const { data: orderData } = await axios.post(
-        `${apiUrl}create-order`,
-        {
-          amount: price,
-        }
-      );
-
+      const { data: orderData } = await axios.post(`${apiUrl}create-order`, {
+        amount: price,
+      });
       const order = orderData.order;
       const options = {
-        key: key, 
+        key: key,
         amount: price,
         currency: "INR",
         name: "Test Payment",

@@ -1,4 +1,5 @@
 import { razorpayInstance } from "../index.js";
+import Cart from "../model/Cart.js";
 import crypto from "crypto";
 export const createOrder = async (req, res) => {
   try {
@@ -46,7 +47,8 @@ export const paymentVerification = async (req, res) => {
     .update(sign.toString())
     .digest('hex');
   if(expectedSign === razorpay_signature){
-    return res.redirect(`https://ecommerce-f-x87w.onrender.com/payment-success?reference=${razorpay_payment_id}`);
+    await Cart.deleteMany();
+    return res.redirect(`https://ecommerce-f-x87w.onrender.compayment-success?reference=${razorpay_payment_id}`);
   }else{
     res.status(400).json({
       success: false,

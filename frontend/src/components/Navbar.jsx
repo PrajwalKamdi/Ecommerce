@@ -1,9 +1,8 @@
 import { Menu, Search, X } from "lucide-react";
-import { useContext, useState, useEffect} from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Mycontext } from "../store/Store";
 import { menuItems } from "./Menu_items";
-
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -47,6 +46,7 @@ const Navbar = () => {
               </span>
               <span className="text-white/80 font-light">MART</span>
             </h1>
+           
           </NavLink>
 
           {/* Desktop Menu */}

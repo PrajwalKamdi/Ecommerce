@@ -277,11 +277,11 @@ const EcommerceHero = () => {
           <div className="flex items-center justify-center space-x-8 text-white text-sm font-medium">
             <span className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-white rounded-full"></div>
-              <span>Free Shipping on Orders $50+</span>
+              <span>Free Shipping </span>
             </span>
             <span className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-white rounded-full"></div>
-              <span>30-Day Easy Returns</span>
+              <span>07-Day Easy Returns</span>
             </span>
             <span className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-white rounded-full"></div>
