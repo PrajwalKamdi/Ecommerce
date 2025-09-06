@@ -41,15 +41,19 @@ export const getKey = async (req, res) => {
 
 export const paymentVerification = async (req, res) => {
   console.log(req.body);
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+  const {  razorpay_payment_id, razorpay_order_id, razorpay_signature } = req.body;
   const sign = razorpay_order_id + "|" + razorpay_payment_id;
   const expectedSign = crypto.createHmac('sha256', process.env.RAZORPAY_API_SECRET)
     .update(sign.toString())
     .digest('hex');
-  if(expectedSign === razorpay_signature){
+    if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
+  return res.status(400).json({ success: false, message: "Missing Razorpay fields" });
+}
+
+  if (expectedSign === razorpay_signature) {
     await Cart.deleteMany();
-    return res.redirect(`https://ecommerce-f-x87w.onrender.compayment-success?reference=${razorpay_payment_id}`);
-  }else{
+    return res.redirect(`https://ecommerce-f-x87w.onrender.com/payment-success?reference=${razorpay_payment_id}`);
+  } else {
     res.status(400).json({
       success: false,
       message: "Invalid signature sent!"

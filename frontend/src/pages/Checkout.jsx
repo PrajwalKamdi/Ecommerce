@@ -1,11 +1,8 @@
 import axios from "axios";
 import { IndianRupee } from "lucide-react";
-import { useContext } from "react";
-import { Mycontext } from "../store/Store.jsx";
 const Checkout = ({}) => {
   const price = localStorage.getItem("totalPrice");
   const apiUrl = import.meta.env.VITE_API_BACKEND;
-  const { setCartItems, setPrice } = useContext(Mycontext);
   const handleSubmit = async () => {
     try {
       const { data: keyData } = await axios.get(`${apiUrl}get-key`);
@@ -21,7 +18,7 @@ const Checkout = ({}) => {
         name: "Test Payment",
         description: "Test Transaction",
         order_id: order.id,
-        callback_url: `${apiUrl}/payment-verification`,
+        callback_url: `${apiUrl}payment-verification`,
         prefill: {
           name: "Test User",
           email: "test@example.com",
@@ -33,8 +30,6 @@ const Checkout = ({}) => {
       };
       const razor = new Razorpay(options);
       razor.open();
-      setCartItems([]);
-      setPrice(0);
       localStorage.removeItem("totalPrice");
       localStorage.removeItem("cartItems");
     } catch (error) {

@@ -15,17 +15,15 @@ export const razorpayInstance = new Razorpay({
   key_id: process.env.RAZORPAY_API_ID,
   key_secret: process.env.RAZORPAY_API_SECRET
 });
-
-
 server.use(express.json());
-server.use('/api', product_route);
-server.use('/api', cart_router)
-server.use('/api', razorRouter)
 server.use(express.urlencoded({ extended: true }));
+server.use('/api', product_route);
+server.use('/api', cart_router);
+server.use('/api', razorRouter)
 server.listen(PORT, () => {
   console.log("Server running on port ", PORT)
 })
 server.get('/', (req, res) => {
-  res.send('API is running...') 
+  res.send('API is running...')
 })
 export default server;
