@@ -2,7 +2,7 @@ import axios from "axios";
 import { Delete, Edit, Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import LoadingSkeleton from "../components/LoadingSkeleton.jsx";
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [isDelete, setIsDelete] = useState(false);
@@ -63,9 +63,7 @@ const Products = () => {
             </tr>
           </thead>
           {loading ? (
-            <div className="max-w-full flex justify-center items-center">
-              Loading... <Loader className="animate-spin" />
-            </div>
+            <LoadingSkeleton/>
           ) : (
             <tbody className="text-sm text-center">
               {products.length > 0 ? (
