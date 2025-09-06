@@ -1,10 +1,50 @@
+import axios from "axios";
 import { IndianRupee } from "lucide-react";
-import React from "react";
+import { useContext } from "react";
+import { Mycontext } from "../store/Store.jsx";
+const Checkout = ({}) => {
+  const price = localStorage.getItem("totalPrice");
+  const apiUrl = import.meta.env.VITE_API_BACKEND;
+  const {setCartItems, setPrice} = useContext(Mycontext);
+  const handleSubmit = async () => {
+    try {
+      const { data: keyData } = await axios.get(`${apiUrl}get-key`);
+      const key = keyData.key;
 
-const Checkout = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
+      const { data: orderData } = await axios.post(
+        `${apiUrl}create-order`,
+        {
+          amount: price,
+        }
+      );
+
+      const order = orderData.order;
+      const options = {
+        key: key, 
+        amount: price,
+        currency: "INR",
+        name: "Test Payment",
+        description: "Test Transaction",
+        order_id: order.id,
+        callback_url: `${apiUrl}/payment-verification`,
+        prefill: {
+          name: "Test User",
+          email: "test@example.com",
+          contact: "9999999999",
+        },
+        theme: {
+          color: "#F37254",
+        },
+      };
+      const razor = new Razorpay(options);
+      razor.open();
+      setCartItems([]);
+      setPrice(0);
+      localStorage.removeItem("totalPrice");
+      localStorage.removeItem("cartItems");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -91,36 +131,39 @@ const Checkout = () => {
               <h3 className="text-xl font-semibold text-white mb-8">
                 Order Summary
               </h3>
-              
+
               <div className="flex justify-between items-center text-neutral-300">
                 <span className="text-sm">Subtotal</span>
                 <span className="flex items-center text-sm font-medium">
                   <IndianRupee size={14} className="mr-1" />
-                  
+                  {price}
                 </span>
               </div>
-              
+
               <div className="flex justify-between items-center text-neutral-300">
                 <span className="text-sm">Shipping</span>
                 <span className="flex items-center text-sm font-medium">
                   Free
                 </span>
               </div>
-              
+
               <div className="w-full h-px bg-neutral-700 my-6" />
-              
+
               <div className="flex justify-between items-center text-white">
                 <span className="font-semibold">Total</span>
                 <span className="flex items-center font-semibold text-lg">
                   <IndianRupee size={16} className="mr-1" />
-                  
+                  {price}
                 </span>
               </div>
             </div>
 
             {/* Proceed Button */}
             <div className="mt-8">
-              <button className="w-full bg-white text-neutral-900 font-medium py-3 rounded-lg hover:bg-neutral-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+              <button
+                onClick={handleSubmit}
+                className="w-full bg-white text-neutral-900 font-medium py-3 rounded-lg hover:bg-neutral-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+              >
                 Continue to Payment
               </button>
             </div>

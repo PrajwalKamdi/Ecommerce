@@ -3,6 +3,7 @@ import Header from './components/Header.jsx'
 import Footer from './pages/Footer.jsx'
 
 const App = () => {
+  const count = localStorage.getItem("cartItems");
   return (
     <div>
       <Header/>

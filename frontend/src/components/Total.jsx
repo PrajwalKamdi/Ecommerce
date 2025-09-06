@@ -35,8 +35,10 @@ const Total = ({price}) => {
             </p>
           </div>
           <div className="mt-4">
-            <NavLink to={"checkout"}>
-              <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 hover:cursor-pointer">
+            <NavLink to={{pathname:"/checkout", state:price}}>
+              <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 hover:cursor-pointer" onClick={() => {
+                localStorage.setItem("totalPrice", price);
+              }}>
                 Proceed to Checkout
               </button>
             </NavLink>

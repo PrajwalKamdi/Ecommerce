@@ -4,7 +4,7 @@ import Navbar from './Navbar.jsx'
 const Header = () => {
   return (
     <div className=''>
-      <Navbar/>
+      <Navbar />
     </div>
   )
 }

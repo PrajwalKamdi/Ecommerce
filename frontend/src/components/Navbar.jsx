@@ -1,16 +1,15 @@
-import { X, Menu, Search, ShoppingCart } from "lucide-react";
-import { useContext, useState } from "react";
+import { Menu, Search, X } from "lucide-react";
+import { useContext, useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
-import { menuItems } from "./Menu_items";
 import { Mycontext } from "../store/Store";
+import { menuItems } from "./Menu_items";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const { cartItems } = useContext(Mycontext);
-
+  
   const handleMenu = () => setMenu((prev) => !prev);
-
   const renderMenuItems = (isMobile = false) =>
     menuItems.map((item, index) => (
       <NavLink

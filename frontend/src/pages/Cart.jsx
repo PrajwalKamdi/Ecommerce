@@ -8,11 +8,8 @@ import Total from "../components/Total";
 import { Mycontext } from "../store/Store";
 
 const Cart = () => {
-  // const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [price, setPrice] = useState(0);
-  const{cartItems, setCartItems}=useContext(Mycontext)
-  
+  const { cartItems, setCartItems, price, setPrice } = useContext(Mycontext);
   const apiUrl = import.meta.env.VITE_API_BACKEND_CART;
 
   const fetchCart = async () => {
@@ -21,7 +18,12 @@ const Cart = () => {
       const response = await axios.get(`${apiUrl}cart`);
       const items = response.data.products || [];
       setCartItems(items);
-      setPrice(items.reduce((acc, item) => acc + item.productPrice * item.productQuntity, 0));
+      setPrice(
+        items.reduce(
+          (acc, item) => acc + item.productPrice * item.productQuntity,
+          0
+        )
+      );
     } catch (error) {
       console.error("Error fetching cart items:", error);
       toast.error("Failed to load cart items.");
@@ -35,7 +37,9 @@ const Cart = () => {
       await axios.delete(`${apiUrl}delete/${id}`);
       setCartItems((prev) => {
         const updated = prev.filter((item) => item._id !== id);
-        setPrice(updated.reduce((acc, i) => acc + i.productPrice * i.productQuntity, 0));
+        setPrice(
+          updated.reduce((acc, i) => acc + i.productPrice * i.productQuntity, 0)
+        );
         return updated;
       });
       toast.success("Item removed from cart!");
@@ -52,7 +56,9 @@ const Cart = () => {
           ? {
               ...item,
               productQuntity:
-                type === "inc" ? item.productQuntity + 1 : Math.max(1, item.productQuntity - 1),
+                type === "inc"
+                  ? item.productQuntity + 1
+                  : Math.max(1, item.productQuntity - 1),
             }
           : item
       )
@@ -64,7 +70,12 @@ const Cart = () => {
   }, []);
 
   useEffect(() => {
-    setPrice(cartItems.reduce((acc, item) => acc + item.productPrice * item.productQuntity, 0));
+    setPrice(
+      cartItems.reduce(
+        (acc, item) => acc + item.productPrice * item.productQuntity,
+        0
+      )
+    );
   }, [cartItems]);
 
   if (loading) return <CartSkeleton />;
@@ -73,7 +84,9 @@ const Cart = () => {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
         <h1 className="text-2xl font-bold mb-3">Your Cart is Empty</h1>
-        <p className="text-gray-600 mb-5 text-sm">Looks like you haven't added anything yet.</p>
+        <p className="text-gray-600 mb-5 text-sm">
+          Looks like you haven't added anything yet.
+        </p>
         <img src={emptyCart} alt="Empty Cart" className="w-48 h-48 mb-5" />
       </div>
     );
@@ -103,10 +116,13 @@ const Cart = () => {
               {/* Product Info */}
               <div className="flex-1 md:ml-4 mt-3 md:mt-0">
                 <h2 className="text-base font-semibold">{item.productName}</h2>
-                <p className="text-gray-600 text-xs mb-2 line-clamp-2">{item.productDescription}</p>
+                <p className="text-gray-600 text-xs mb-2 line-clamp-2">
+                  {item.productDescription}
+                </p>
                 <div className="flex items-center gap-3 text-gray-700 text-sm">
                   <p className="flex items-center font-medium">
-                    <IndianRupee size={16} className="mr-1" /> {item.productPrice}
+                    <IndianRupee size={16} className="mr-1" />{" "}
+                    {item.productPrice}
                   </p>
                 </div>
 
@@ -135,7 +151,10 @@ const Cart = () => {
                 onClick={() => handleDelete(item._id)}
                 className="ml-4 p-2 rounded-full hover:bg-red-100"
               >
-                <Trash2 size={20} className="text-gray-600 hover:text-red-600" />
+                <Trash2
+                  size={20}
+                  className="text-gray-600 hover:text-red-600"
+                />
               </button>
             </div>
           ))}
@@ -159,9 +178,7 @@ const Cart = () => {
           </div>
           <hr className="my-3" />
           <Total price={price} />
-          <button className="w-full mt-3 bg-yellow-400 hover:bg-yellow-500 text-black font-medium py-2.5 rounded-md transition">
-            Proceed to Buy
-          </button>
+          
         </div>
       </div>
 

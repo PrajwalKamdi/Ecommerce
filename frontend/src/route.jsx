@@ -24,8 +24,8 @@ const router = createBrowserRouter(
       <Route path="orders" element={<Orders />} />
       <Route path="login" element={<Login />} />
       <Route path="sign-up" element={<SignUpForm/>} />
-
-      <Route path="cart/checkout" element={<Checkout/>} />
+      <Route path="payment-success?reference=:razorpay_payment_id" element={<Orders />} />
+      <Route path="/checkout" element={<Checkout />} />
     </Route>
   )
 );
