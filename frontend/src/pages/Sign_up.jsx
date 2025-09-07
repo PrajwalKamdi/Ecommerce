@@ -1,8 +1,11 @@
 import { Eye, EyeOff, Mail, Lock, User, Phone } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 const SignUpForm = () => {
+  const api = import.meta.env.VITE_API_BACKEND;
+  console.log(api);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -26,7 +29,6 @@ const SignUpForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords don't match!");
       return;
@@ -39,12 +41,24 @@ const SignUpForm = () => {
 
     setLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      console.log("Sign up data:", formData);
+    try {
+      const data = axios.post(`${api}signUp`, formData);
+      // const { data } = await axios.post("http://localhost:3000/api/signUp", formData);
+      toast.success("Sign Up Successfully!");
+    } catch (e) {
+      toast.error(e.response?.data?.message || "Signup failed");
+    } finally {
       setLoading(false);
-      // Handle sign up logic here
-    }, 1500);
+      setAcceptTerms(false);
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        password: "",
+        confirmPassword: "",
+      });
+    }
   };
 
   return (
@@ -325,12 +339,13 @@ const SignUpForm = () => {
                 type="button"
                 className="font-medium text-neutral-900 hover:text-neutral-700 transition-colors duration-200"
               >
-                <NavLink to={'/login'}>Sign in</NavLink>
+                <NavLink to={"/login"}>Sign in</NavLink>
               </button>
             </p>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

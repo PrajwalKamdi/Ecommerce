@@ -14,6 +14,7 @@ import Login from "./pages/Login.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import SignUpForm from "./pages/Sign_up.jsx";
 import Orders_success from "./pages/Orders_success.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,8 @@ const router = createBrowserRouter(
       <Route path="sign-up" element={<SignUpForm/>} />
       <Route path="payment-success" element={<Orders_success />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/profile" element={<Profile/>} />
+
     </Route>
   )
 );

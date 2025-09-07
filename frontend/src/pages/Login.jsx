@@ -1,8 +1,11 @@
-import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import axios from "axios";
+import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const api = import.meta.env.VITE_API_BACKEND;
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,13 +24,29 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      console.log("Login data:", formData);
+    try {
+      const { data } = axios.post(`${api}login`, formData);
+      // console.log(formData);
+      // const { data } = await axios.post(
+      //   "http://localhost:3000/api/login",
+      //   formData
+      // );
+      // console.log(data);
+      const fullName = data.user.fullName;
+      localStorage.setItem("fullName", fullName);
+      toast.success("Login Successful!");
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    } catch (error) {
+      toast.error(e.response?.data?.message);
+    } finally {
+      setFormData({
+        email: "",
+        password: "",
+      });
       setLoading(false);
-      // Handle login logic here
-    }, 1500);
+    }
   };
 
   return (
@@ -185,12 +204,13 @@ const LoginForm = () => {
                 type="button"
                 className="font-medium text-neutral-900 hover:text-neutral-700 transition-colors duration-200"
               >
-                <NavLink to={'/sign-up'}>Sign up</NavLink>
+                <NavLink to={"/sign-up"}>Sign up</NavLink>
               </button>
             </p>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

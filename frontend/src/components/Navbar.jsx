@@ -3,11 +3,12 @@ import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Mycontext } from "../store/Store";
 import { menuItems } from "./Menu_items";
+import { useEffect } from "react";
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const { cartItems } = useContext(Mycontext);
-  
+ 
   const handleMenu = () => setMenu((prev) => !prev);
   const renderMenuItems = (isMobile = false) =>
     menuItems.map((item, index) => (
@@ -46,7 +47,6 @@ const Navbar = () => {
               </span>
               <span className="text-white/80 font-light">MART</span>
             </h1>
-           
           </NavLink>
 
           {/* Desktop Menu */}

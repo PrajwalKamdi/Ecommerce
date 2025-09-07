@@ -5,6 +5,7 @@ import cart_router from './routes/Cart_route.js';
 import product_route from './routes/ProductRoutes.js';
 import Razorpay from 'razorpay';
 import razorRouter from './routes/RazorPayRoute.js';
+import User_Router from './routes/User_Route.js';
 
 const server = express();
 server.use(cors());
@@ -20,6 +21,7 @@ server.use(express.urlencoded({ extended: true }));
 server.use('/api', product_route);
 server.use('/api', cart_router);
 server.use('/api', razorRouter)
+server.use('/api', User_Router)
 server.listen(PORT, () => {
   console.log("Server running on port ", PORT)
 })

@@ -1,8 +1,8 @@
 import Product from "../model/Product_Schema.js";
-
 export const addProduct = async (req, res) => {
   try {
     const { name, description, price, discountPrice, currency, stock, sku, category, subCategory, brand, tags, image, ratings, numReviews, reviews, isFeatured, isActive, weight, dimensions, createdAt, updatedAt } = req.body;
+   
 
     const newProduct = new Product({
       name,
